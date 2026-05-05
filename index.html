@@ -3,11 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>내 최애 가수는 한달에 얼마 벌까?</title>
+    
+    <title>내 최애 가수의 한달 수익 계산기</title>
+    <meta name="description" content="음원 수익, 공연장 규모, 멤버 수를 입력하고 내 최애 아이돌 가수의 예상 정산액을 계산해 보세요!">
+    
+    <meta name="keywords" content="아이돌 정산, 가수 수익, 음원 수익 계산, 최애 정산금, KPOP, 걸그룹 수익, 보이그룹 매출, KPOP 아이돌 정산 비율, 아이돌 월급, 콘서트 수입, 아이돌 공연 매출, 최애 멤버 정산액, 엔터테인먼트 정산 비율, 스트리밍 수익 단가, 아이돌 음반 판매 수익, 1군 아이돌 수입, 신인 아이돌 정산, 음원 저작권료 계산, 유튜브 음원 수익, 아이돌 행사비, 굿즈 매출, 투어 매출액, 위버스 매출, 팬미팅 수익, 아이돌 빚청산, 연예인 재산, 기획사 배분율, 아이돌 모델료, 앰버서더 수익, 덕질 정산기">
+
+    <meta property="og:title" content="내 최애 가수의 한달 수익은? 💸">
+    <meta property="og:description" content="음원 성적과 공연장 규모를 넣으면 최애의 예상 정산액이 짠! 지금 바로 계산해보세요.">
+    <meta property="og:image" content="썸네일_이미지_주소.jpg">
+    
     <style>
         /* 디자인: 팬심 가득한 핑크&퍼플 테마 */
         body {
-            font-family: 'Pretendard', sans-serif;
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
             background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             display: flex;
             justify-content: center;
@@ -18,18 +27,25 @@
         }
         .container {
             background-color: white;
-            padding: 30px;
+            padding: 30px 20px; /* 모바일에서 좌우 여백을 살짝 줄여 공간 확보 */
             border-radius: 20px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
             width: 100%;
             max-width: 400px;
+            box-sizing: border-box;
         }
+        
+        /* 2. 제목 글씨 모바일 최적화 (1줄 고정) */
         h1 {
             text-align: center;
             color: #ff4757;
-            font-size: 24px;
+            /* 화면 크기에 맞춰 글씨가 자동으로 작아지도록 설정 (clamp 함수 사용) */
+            font-size: clamp(18px, 5vw, 24px); 
             margin-bottom: 25px;
+            white-space: nowrap; /* 글씨가 2줄로 넘어가는 것을 방지 */
+            letter-spacing: -0.5px; /* 자간을 살짝 좁혀서 공간 확보 */
         }
+        
         .input-group {
             margin-bottom: 15px;
         }
@@ -69,7 +85,7 @@
             padding: 20px;
             background-color: #fff0f0;
             border-radius: 10px;
-            display: none; /* 초기에는 숨김 */
+            display: none;
         }
         .result-item {
             display: flex;
@@ -106,12 +122,24 @@
             background-color: #ff4757;
             color: white;
         }
+        
+        /* 화면에는 안 보이고 검색 엔진(구글, 네이버)만 읽을 수 있는 투명 영역 */
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            margin: -1px;
+            padding: 0;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>✨ 내 최애 가수는 얼마를 벌까? ✨</h1>
+    <h1>✨ 내 최애 가수의 한달 수익 ✨</h1>
 
     <div class="input-group">
         <label>음원 데이터 1 (스트리밍 수 등)</label>
@@ -158,6 +186,10 @@
             📺 계산 방법이 궁금하다면?
         </a>
     </div>
+</div>
+
+<div class="visually-hidden">
+    아이돌 정산, 가수 수익, 음원 수익 계산, 최애 정산금, KPOP, 걸그룹 수익, 보이그룹 매출, KPOP 아이돌 정산 비율, 아이돌 월급, 콘서트 수입, 아이돌 공연 매출, 최애 멤버 정산액, 엔터테인먼트 정산 비율, 스트리밍 수익 단가, 아이돌 음반 판매 수익, 1군 아이돌 수입, 신인 아이돌 정산, 음원 저작권료 계산, 유튜브 음원 수익, 아이돌 행사비, 굿즈 매출, 투어 매출액, 위버스 매출, 팬미팅 수익, 아이돌 빚청산, 연예인 재산, 기획사 배분율, 아이돌 모델료, 앰버서더 수익, 덕질 정산기
 </div>
 
 <script>
