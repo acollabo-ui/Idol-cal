@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>내 최애 가수는 한달에 얼마 벌까?</title>
+    <style>
+        /* 디자인: 팬심 가득한 핑크&퍼플 테마 */
+        body {
+            font-family: 'Pretendard', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+        h1 {
+            text-align: center;
+            color: #ff4757;
+            font-size: 24px;
+            margin-bottom: 25px;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        button {
+            width: 100%;
+            padding: 15px;
+            background-color: #ff4757;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #e84118;
+        }
+        .result-area {
+            margin-top: 25px;
+            padding: 20px;
+            background-color: #fff0f0;
+            border-radius: 10px;
+            display: none; /* 초기에는 숨김 */
+        }
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 15px;
+            border-bottom: 1px dashed #ffcccb;
+            padding-bottom: 5px;
+        }
+        .final-result {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #d63031;
+        }
+        /* 유튜브 링크 디자인 추가 */
+        .youtube-link {
+            text-align: center;
+            margin-top: 25px;
+        }
+        .youtube-link a {
+            display: inline-block;
+            color: #555;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 10px 15px;
+            border-radius: 20px;
+            background-color: #f1f2f6;
+            transition: all 0.3s ease;
+        }
+        .youtube-link a:hover {
+            background-color: #ff4757;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>✨ 내 최애 가수는 얼마를 벌까? ✨</h1>
+
+    <div class="input-group">
+        <label>음원 데이터 1 (스트리밍 수 등)</label>
+        <input type="number" id="music1" placeholder="숫자만 입력">
+    </div>
+    <div class="input-group">
+        <label>음원 데이터 2 (스트리밍 수 등)</label>
+        <input type="number" id="music2" placeholder="숫자만 입력">
+    </div>
+
+    <div class="input-group">
+        <label>공연장 객석 수</label>
+        <input type="number" id="seats" placeholder="예: 10000">
+    </div>
+
+    <div class="input-group">
+        <label>멤버 수</label>
+        <input type="number" id="members" placeholder="예: 7">
+    </div>
+
+    <button onclick="calculateRevenue()">계산하기</button>
+
+    <div id="resultArea" class="result-area">
+        <div class="result-item">
+            <span>평균 음원 매출(회사)</span>
+            <span id="resMusic">0원</span>
+        </div>
+        <div class="result-item">
+            <span>공연 매출</span>
+            <span id="resConcert">0원</span>
+        </div>
+        <div class="result-item">
+            <span>총 매출 합계</span>
+            <span id="resTotal">0원</span>
+        </div>
+        <div class="final-result">
+            멤버 1인당 예상 정산액:<br>
+            <span id="resMember">0원</span>
+        </div>
+    </div>
+
+    <div class="youtube-link">
+        <a href="https://www.youtube.com/@GGondae_therecord" target="_blank">
+            📺 계산 방법이 궁금하다면?
+        </a>
+    </div>
+</div>
+
+<script>
+    function calculateRevenue() {
+        // 입력값 가져오기
+        const music1 = Number(document.getElementById('music1').value);
+        const music2 = Number(document.getElementById('music2').value);
+        const seats = Number(document.getElementById('seats').value);
+        const members = Number(document.getElementById('members').value);
+
+        if(!music1 || !music2 || !seats || !members) {
+            alert("모든 빈칸을 채워주세요!");
+            return;
+        }
+
+        // 1. 음원 매출 계산: (합산 / 2) * 4.2
+        const musicRevenue = ((music1 + music2) / 2) * 4.2;
+
+        // 2. 공연 매출 계산: 500석 이하 6.6만 / 이상 13.2만
+        let ticketPrice = (seats <= 500) ? 66000 : 132000;
+        const concertRevenue = seats * ticketPrice;
+
+        // 3. 총 매출 및 멤버 정산: (총 매출 * 30%) / 멤버수
+        const totalRevenue = musicRevenue + concertRevenue;
+        const memberEarnings = (totalRevenue * 0.3) / members;
+
+        // 결과 화면에 출력 (천단위 콤마 추가)
+        document.getElementById('resMusic').innerText = Math.floor(musicRevenue).toLocaleString() + "원";
+        document.getElementById('resConcert').innerText = Math.floor(concertRevenue).toLocaleString() + "원";
+        document.getElementById('resTotal').innerText = Math.floor(totalRevenue).toLocaleString() + "원";
+        document.getElementById('resMember').innerText = Math.floor(memberEarnings).toLocaleString() + "원";
+
+        // 결과 영역 보이기
+        document.getElementById('resultArea').style.display = 'block';
+    }
+</script>
+
+</body>
+</html>
